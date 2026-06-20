@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: aliceblue;
+        text-align: center;
+        padding: 30px;
+    }
+
+    h1 { color: #ff5a43; }
+    button {
+        background: #ff5a43;
+        color: white;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        margin: 5px;
+    }
+    div {
+        border: 1px solid #ff5a43;
+        width: 280px;
+        margin: 6px auto;
+        padding: 8px 12px;
+        text-align: left;
+        border-radius: 6px;
+
+}
+
+
+  </style>
+</head>
+<body>
+    <h1>My delivery tracker</h1>
+    <button onclick="saveOrder()">Save Order</button>
+    <button onclick="startDelivery()">Start Delivery</button>
+    <div>Json text:<span id="json text"></span></div>
+    <div>Loaded item:<span id="loaded item"></span></div>
+    <div>Loaded price:<span id="loaded price"></span></div>
+    <div>Status:<span id="status"></span></div>
+    <div>Result:<span id="result"></span></div>
+    <script>
+        let order={
+            "item":"pizza",
+            "price":150000,
+            "shop":"Cafe Javas"
+        }
+        function saveOrder(){
+            let jasonText=JSON.stringify(order)
+             let loadedOrder=JSON.parse(JasonText)
+             document.getElementById("json-text").innerHTML=jasonText
+             document.getElementById("loaded-item").innerHTML=loadedOrder.item
+             document.getElementById("loaded-price").innerHTML=loadedOrder.price
+        }
+
+        function delay(ms){
+            return new Promise(function(relove){
+                setTimeout(relove,ms)
+            })
+        }
+
+        async function startDelivery(){
+            document.getElementById("result").innerHTML=""
+            document.getElementById("status").innerHTML="Order recived!"
+            setTimeout(function(){
+                document.getElementById("status").innerHTML="Kichen preparing your oreder"
+            },1000)
+
+            await delay(3000)
+            document.getElementByI("status").innerHTML="Your order is being delveried"
+            await delay(2000)
+            document.getElementByI("status").innerHTML="Your order has arrived"
+        }
+    </script>
+</body>
+</html>
